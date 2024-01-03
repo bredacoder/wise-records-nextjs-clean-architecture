@@ -4,6 +4,8 @@
     "next/core-web-vitals"
   ],
   "rules": {
-    "import/no-duplicates":"off"
+    "import/no-duplicates":"off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "no-useless-constructor": "off"
   }
 }
