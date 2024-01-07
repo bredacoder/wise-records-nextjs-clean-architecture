@@ -20,6 +20,7 @@ export type HttpRequest = {
   method: HttpMethod
   body?: any
   headers?: any
+  options?: any
 }
 
 export interface HttpClient<R = any> {
