@@ -6,11 +6,13 @@ export class RemoteLoadBeatList implements LoadBeatList {
   constructor(
     private readonly url: string,
     private readonly httpClient: HttpClient<BeatModel[]>,
+    private readonly options?: any,
   ) {}
 
   async loadAll(): Promise<BeatModel[]> {
     const httpResponse = await this.httpClient.request({
       url: this.url,
+      options: this.options,
       method: 'get',
     })
     return httpResponse.body || []
