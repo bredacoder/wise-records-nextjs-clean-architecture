@@ -7,11 +7,11 @@ import { HttpStatusCode } from '@/core/data/protocols/http/http-client'
 
 interface SutTypes {
   sut: RemoteLoadBeatList
-  httpClientSpy: HttpClientSpy<BeatModel[]>
+  httpClientSpy: HttpClientSpy<BeatModel[] | any>
 }
 
 const makeSut = (url = faker.internet.url()): SutTypes => {
-  const httpClientSpy = new HttpClientSpy<BeatModel[]>()
+  const httpClientSpy = new HttpClientSpy<BeatModel[] | any>()
   const sut = new RemoteLoadBeatList(url, httpClientSpy)
   return {
     sut,
@@ -41,5 +41,16 @@ describe('RemoteLoadBeatList', () => {
     const httpResponse = await sut.loadAll()
 
     expect(httpResponse).toEqual(httpResult)
+  })
+
+  test('Should return an empty list if HttpClient returns 404', async () => {
+    const { sut, httpClientSpy } = makeSut()
+    httpClientSpy.response = {
+      statusCode: HttpStatusCode.notFound,
+    }
+
+    const httpResponse = await sut.loadAll()
+
+    expect(httpResponse).toEqual([])
   })
 })
