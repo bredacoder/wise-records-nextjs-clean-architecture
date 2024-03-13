@@ -1,7 +1,7 @@
-import { makeRemoteLoadBeatList } from '@/core/main/factories/usecases/remote-load-beat-list-factory'
+import { useBeatList } from './useBeatList'
 
 export async function BeatList() {
-  const beats = await makeRemoteLoadBeatList({ cache: 'force-cache' }).loadAll()
+  const beats = await useBeatList()
 
   return (
     <main>
