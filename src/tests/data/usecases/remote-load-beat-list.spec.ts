@@ -43,10 +43,10 @@ describe('RemoteLoadBeatList', () => {
     expect(httpResponse).toEqual(httpResult)
   })
 
-  test('Should return an empty list if HttpClient returns 404', async () => {
+  test('Should return an empty list if HttpClient throws an error', async () => {
     const { sut, httpClientSpy } = makeSut()
     httpClientSpy.response = {
-      statusCode: HttpStatusCode.notFound,
+      statusCode: HttpStatusCode.serverError,
     }
 
     const httpResponse = await sut.loadAll()
