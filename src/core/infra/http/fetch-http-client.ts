@@ -18,9 +18,13 @@ export class FetchHttpClient implements HttpClient {
       ...data.options,
     })
 
-    return {
-      statusCode: response.status,
-      body: response.json(),
+    if (response.ok) {
+      return {
+        statusCode: response.status,
+        body: response.json(),
+      }
+    } else {
+      throw new Error(response.statusText)
     }
   }
 }

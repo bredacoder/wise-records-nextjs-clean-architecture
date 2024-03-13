@@ -10,11 +10,16 @@ export class RemoteLoadBeatList implements LoadBeatList {
   ) {}
 
   async loadAll(): Promise<BeatModel[]> {
-    const httpResponse = await this.httpClient.request({
-      url: this.url,
-      options: this.options,
-      method: 'get',
-    })
-    return httpResponse.body || []
+    try {
+      const httpResponse = await this.httpClient.request({
+        url: this.url,
+        options: this.options,
+        method: 'get',
+      })
+
+      return httpResponse.body || []
+    } catch (error) {
+      return []
+    }
   }
 }
