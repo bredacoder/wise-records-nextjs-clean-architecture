@@ -4,7 +4,7 @@ import {
   HttpClient,
   HttpStatusCode,
   HttpResponse,
-} from '../protocols/http/http-client'
+} from '@/core/data/protocols/http/http-client'
 
 export const mockHttpRequest = (): HttpRequest => ({
   url: faker.internet.url(),
