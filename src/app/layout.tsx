@@ -3,6 +3,7 @@ import { Inter as FontSans } from 'next/font/google'
 import { cn } from '@/lib/utils'
 import { Metadata } from 'next'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Header } from '@/components/Header'
 
 export const metadata: Metadata = {
   title: 'Wise Records',
@@ -24,7 +25,7 @@ export default function RootLayout({
       <head />
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'min-h-screen bg-background font-sans antialiased relative',
           fontSans.variable,
         )}
       >
@@ -34,6 +35,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Header />
           {children}
         </ThemeProvider>
       </body>
